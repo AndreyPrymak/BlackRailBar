@@ -389,7 +389,7 @@ export default function BlackRailBarSite() {
 
         <footer className="border-t border-white/10 bg-black/40">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-white/55 md:flex-row md:items-center md:justify-between lg:px-10">
-            <div>© 2026 Black Rail Bar. Усі права захищені.</div>
+            <div>© 2026 Black Rail Bar by 50Prim. Усі права захищені.</div>
             <div className="flex gap-6">
               <a href="#home" className="transition hover:text-amber-300">Головна</a>
               <a href="#menu" className="transition hover:text-amber-300">Меню</a>
