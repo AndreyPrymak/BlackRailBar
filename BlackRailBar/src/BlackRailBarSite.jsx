@@ -313,13 +313,16 @@ export default function BlackRailBarSite() {
 
                <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
 
-                 <div className="flex w-[500%] animate-[slideshow_20s_infinite]">
+                 <div className="flex animate-[slideshow_20s_infinite]" style={{ width: "500%" }}>
                    {[...galleryPhotos, galleryPhotos[0]].map((photo, index) => (
-                     <div key={index} className="w-full shrink-0 flex items-center justify-center h-[420px] sm:h-[500px]">
+                     <div
+                       key={index}
+                       className="flex h-[420px] w-[20%] shrink-0 items-center justify-center bg-black sm:h-[500px]"
+                     >
                        <img
                          src={photo}
                          alt={`Фото ${index + 1}`}
-                         className="max-h-full max-w-full object-contain"
+                         className="h-full w-full object-contain"
                        />
                      </div>
                    ))}
