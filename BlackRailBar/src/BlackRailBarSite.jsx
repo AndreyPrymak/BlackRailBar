@@ -3,6 +3,7 @@ export default function BlackRailBarSite() {
       "/images/bar1.jpg",
       "/images/bar2.jpg",
       "/images/bar3.jpg",
+      "/images/bar4.jpg"
       ];
   const menuCocktails = [
     {
@@ -44,9 +45,9 @@ export default function BlackRailBarSite() {
       desc: "Джерки приготовані власними руцями.",
     },
     {
-      name: "Картопля по-селянськи",
+      name: "Медовик Фастів-2",
       price: "140 грн",
-      desc: "Запечена картопля зі спеціями та соусом айолі.",
+      desc: "Ти повинен бути клієнтом Віталія щоб мати можливість скуштувати цей неперевершений шедевр.",
     },
   ];
 
@@ -115,10 +116,10 @@ export default function BlackRailBarSite() {
           className="relative isolate overflow-hidden"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover"
             style={{
-              backgroundImage:
-                "url('/images/background.jpg')",
+              backgroundImage: "url('/images/background.jpg')",
+              backgroundPosition: "50% 22%"
             }}
           />
           <div className="hero-overlay absolute inset-0" />
@@ -126,7 +127,7 @@ export default function BlackRailBarSite() {
           <div className="relative mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
             <div className="max-w-3xl">
               <div className="mb-4 inline-flex rounded-full border border-amber-300/25 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-amber-200/90">
-                Атмосфера нічного міста
+                Атмосфера справжнього гаражу
               </div>
               <h1 className="max-w-4xl text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
                 Бар, куди приходять
@@ -298,46 +299,54 @@ export default function BlackRailBarSite() {
             </div>
 
              <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-amber-400/10 via-white/[0.04] to-white/[0.02] p-6 gold-glow sm:p-8">
-             <div className="mb-5 flex items-center justify-between gap-4">
-              <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
-              <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
-              </div>
-              <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
-              4 фото
-              </div>
-              </div>
-              <div className="relative overflow-hidden rounded-[24px] border border-white/10">
-              <div className="flex w-[400%] animate-[slideshow_18s_infinite]">
-              {[...galleryPhotos, galleryPhotos[0]].map((photo, index) => (
-              <div key={`${photo}-${index}`} className="h-[420px] w-full shrink-0 sm:h-[500px]">
-              <img
-              src={photo}
-              alt={`Інтер’єр бару ${index + 1}`}
-              className="h-full w-full object-cover"
-              />
-              </div>
-              ))}
-              </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
-                  <div>
-                    <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
-                      Lounge • Cocktails • Mood
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    {galleryPhotos.map((_, index) => (
-                      <span
-                        key={index}
-                        className="h-2.5 w-2.5 rounded-full bg-white/55 ring-1 ring-white/20"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+
+               <div className="mb-5 flex items-center justify-between gap-4">
+                 <div>
+                   <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
+                   <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
+                 </div>
+
+                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
+                   4 фото
+                 </div>
+               </div>
+
+               <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
+
+                 <div className="flex w-[500%] animate-[slideshow_20s_infinite]">
+                   {[...galleryPhotos, galleryPhotos[0]].map((photo, index) => (
+                     <div key={index} className="w-full shrink-0 flex items-center justify-center h-[420px] sm:h-[500px]">
+                       <img
+                         src={photo}
+                         alt={`Фото ${index + 1}`}
+                         className="max-h-full max-w-full object-contain"
+                       />
+                     </div>
+                   ))}
+                 </div>
+
+                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
+                   <div>
+                     <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
+                     <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
+                       Lounge • Cocktails • Mood
+                     </div>
+                   </div>
+
+                   <div className="flex gap-2">
+                     {galleryPhotos.map((_, index) => (
+                       <span
+                         key={index}
+                         className="h-2.5 w-2.5 rounded-full bg-white/60"
+                       />
+                     ))}
+                   </div>
+                 </div>
+
+               </div>
+             </div>
           </div>
         </section>
       </main>
