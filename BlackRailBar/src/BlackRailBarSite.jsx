@@ -1,4 +1,6 @@
+import { useState } from "react";
 export default function BlackRailBarSite() {
+    const [currentSlide, setCurrentSlide] = useState(0);
     const galleryPhotos = [
       "/images/bar1.jpg",
       "/images/bar2.jpg",
@@ -313,50 +315,79 @@ export default function BlackRailBarSite() {
 
                <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
 
-                 <div className="flex animate-[slideshow_20s_infinite]" style={{ width: "500%" }}>
-                   {[...galleryPhotos, galleryPhotos[0]].map((photo, index) => (
-                     <div
-                       key={index}
-                       className="flex h-[420px] w-[20%] shrink-0 items-center justify-center bg-black sm:h-[500px]"
-                     >
-                       <img
-                         src={photo}
-                         alt={`Фото ${index + 1}`}
-                         className="h-full w-full object-contain"
-                       />
-                     </div>
-                   ))}
-                 </div>
-
-                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
-                   <div>
-                     <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
-                     <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
-                       Lounge • Cocktails • Mood
-                     </div>
-                   </div>
-
-                   <div className="flex gap-2">
-                     {galleryPhotos.map((_, index) => (
-                       <span
+                  <div
+                     className="flex transition-transform duration-500"
+                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                   >
+                     {galleryPhotos.map((photo, index) => (
+                       <div
                          key={index}
-                         className="h-2.5 w-2.5 rounded-full bg-white/60"
-                       />
+                         className="w-full shrink-0 flex items-center justify-center h-[420px] sm:h-[500px] bg-black"
+                       >
+                         <img
+                           src={photo}
+                           alt={`Фото ${index + 1}`}
+                           className="h-full w-full object-contain"
+                         />
+                       </div>
                      ))}
                    </div>
-                 </div>
 
-               </div>
-             </div>
-          </div>
+                   {/* arrows */}
+                   <button
+                     onClick={() => setCurrentSlide((prev) => (prev === 0 ? galleryPhotos.length - 1 : prev - 1))}
+                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 px-3 py-2 rounded-full text-white"
+                   >
+                     ←
+                   </button>
+
+                   <button
+                     onClick={() => setCurrentSlide((prev) => (prev === galleryPhotos.length - 1 ? 0 : prev + 1))}
+                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 px-3 py-2 rounded-full text-white"
+                   >
+                     →
+                   </button>
+
+                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+                   <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
+                     <div>
+                       <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
+                       <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
+                         Lounge • Cocktails • Mood
+                       </div>
+                     </div>
+
+                     <div className="flex gap-2">
+                       {galleryPhotos.map((_, index) => (
+                         <span
+                           key={index}
+                           className={`h-2.5 w-2.5 rounded-full ${index === currentSlide ? "bg-white" : "bg-white/40"}`}
+                         />
+                       ))}
+                     </div>
+                   </div>
+
+                 </div>
+                           </div>
+                                   <div className="flex gap-2">
+                                     {galleryPhotos.map((_, index) => (
+                                       <span
+                                         key={index}
+                                         className="h-2.5 w-2.5 rounded-full bg-white/55 ring-1 ring-white/20"
+                                       />
+                                     ))}
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
         </section>
       </main>
 
       <footer className="border-t border-white/10 bg-black/40">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-white/55 md:flex-row md:items-center md:justify-between lg:px-10">
-          <div>© 2026 Black Rail Bar. Усі права захищені.</div>
+          <div>© 2026 Black Rail Bar by 50Prim. Усі права захищені.</div>
           <div className="flex gap-6">
             <a href="#home" className="transition hover:text-amber-300">Головна</a>
             <a href="#menu" className="transition hover:text-amber-300">Меню</a>
