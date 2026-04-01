@@ -281,13 +281,19 @@ export default function BlackRailBarSite() {
                 </div>
                 <div>
                   <div className="text-white">Телефон</div>
-                  <a href={`tel:${contacts.phone.replace(/[^+\d]/g, "")}`} className="transition hover:text-amber-300">
+                  <a
+                    href={`tel:${contacts.phone.replace(/[^+\d]/g, "")}`}
+                    className="transition hover:text-amber-300"
+                  >
                     {contacts.phone}
                   </a>
                 </div>
                 <div>
                   <div className="text-white">Email</div>
-                  <a href={`mailto:${contacts.email}`} className="transition hover:text-amber-300">
+                  <a
+                    href={`mailto:${contacts.email}`}
+                    className="transition hover:text-amber-300"
+                  >
                     {contacts.email}
                   </a>
                 </div>
@@ -300,101 +306,97 @@ export default function BlackRailBarSite() {
               </div>
             </div>
 
-             <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-amber-400/10 via-white/[0.04] to-white/[0.02] p-6 gold-glow sm:p-8">
+            <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-amber-400/10 via-white/[0.04] to-white/[0.02] p-6 gold-glow sm:p-8">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
+                  <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
+                </div>
+                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
+                  4 фото
+                </div>
+              </div>
 
-               <div className="mb-5 flex items-center justify-between gap-4">
-                 <div>
-                   <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
-                   <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
-                 </div>
+              <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {galleryPhotos.map((photo, index) => (
+                    <div
+                      key={index}
+                      className="flex h-[420px] w-full shrink-0 items-center justify-center bg-black sm:h-[500px]"
+                    >
+                      <img
+                        src={photo}
+                        alt={`Фото ${index + 1}`}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
 
-                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
-                   4 фото
-                 </div>
-               </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCurrentSlide((prev) =>
+                      prev === 0 ? galleryPhotos.length - 1 : prev - 1
+                    )
+                  }
+                  className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/55 px-3 py-2 text-white transition hover:bg-black/75"
+                >
+                  ←
+                </button>
 
-               <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCurrentSlide((prev) =>
+                      prev === galleryPhotos.length - 1 ? 0 : prev + 1
+                    )
+                  }
+                  className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/55 px-3 py-2 text-white transition hover:bg-black/75"
+                >
+                  →
+                </button>
 
-                  <div
-                     className="flex transition-transform duration-500"
-                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                   >
-                     {galleryPhotos.map((photo, index) => (
-                       <div
-                         key={index}
-                         className="w-full shrink-0 flex items-center justify-center h-[420px] sm:h-[500px] bg-black"
-                       >
-                         <img
-                           src={photo}
-                           alt={`Фото ${index + 1}`}
-                           className="h-full w-full object-contain"
-                         />
-                       </div>
-                     ))}
-                   </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
 
-                   {/* arrows */}
-                   <button
-                     onClick={() => setCurrentSlide((prev) => (prev === 0 ? galleryPhotos.length - 1 : prev - 1))}
-                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 px-3 py-2 rounded-full text-white"
-                   >
-                     ←
-                   </button>
+                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
+                  <div>
+                    <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
+                    <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
+                      Lounge • Cocktails • Mood
+                    </div>
+                  </div>
 
-                   <button
-                     onClick={() => setCurrentSlide((prev) => (prev === galleryPhotos.length - 1 ? 0 : prev + 1))}
-                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 px-3 py-2 rounded-full text-white"
-                   >
-                     →
-                   </button>
-
-                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-
-                   <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
-                     <div>
-                       <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
-                       <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
-                         Lounge • Cocktails • Mood
-                       </div>
-                     </div>
-
-                     <div className="flex gap-2">
-                       {galleryPhotos.map((_, index) => (
-                         <span
-                           key={index}
-                           className={`h-2.5 w-2.5 rounded-full ${index === currentSlide ? "bg-white" : "bg-white/40"}`}
-                         />
-                       ))}
-                     </div>
-                   </div>
-
-                 </div>
-                           </div>
-                                   <div className="flex gap-2">
-                                     {galleryPhotos.map((_, index) => (
-                                       <span
-                                         key={index}
-                                         className="h-2.5 w-2.5 rounded-full bg-white/55 ring-1 ring-white/20"
-                                       />
-                                     ))}
-                                   </div>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-white/10 bg-black/40">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-white/55 md:flex-row md:items-center md:justify-between lg:px-10">
-          <div>© 2026 Black Rail Bar by 50Prim. Усі права захищені.</div>
-          <div className="flex gap-6">
-            <a href="#home" className="transition hover:text-amber-300">Головна</a>
-            <a href="#menu" className="transition hover:text-amber-300">Меню</a>
-            <a href="#contacts" className="transition hover:text-amber-300">Контакти</a>
+                  <div className="flex gap-2">
+                    {galleryPhotos.map((_, index) => (
+                      <span
+                        key={index}
+                        className={`h-2.5 w-2.5 rounded-full ring-1 ring-white/20 ${
+                          index === currentSlide ? "bg-white" : "bg-white/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
+        </main>
+
+        <footer className="border-t border-white/10 bg-black/40">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-white/55 md:flex-row md:items-center md:justify-between lg:px-10">
+            <div>© 2026 Black Rail Bar. Усі права захищені.</div>
+            <div className="flex gap-6">
+              <a href="#home" className="transition hover:text-amber-300">Головна</a>
+              <a href="#menu" className="transition hover:text-amber-300">Меню</a>
+              <a href="#contacts" className="transition hover:text-amber-300">Контакти</a>
+            </div>
+          </div>
+        </footer>
         </div>
-      </footer>
-    </div>
-  );
+ );
 }
