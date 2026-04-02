@@ -316,7 +316,6 @@ export default function BlackRailBarSite() {
                   <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
                   <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
                 </div>
-
                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
                   {galleryPhotos.length} фото
                 </div>
@@ -332,7 +331,7 @@ export default function BlackRailBarSite() {
                 >
                   {galleryPhotos.map((photo, index) => (
                     <div
-                      key={`${photo}-${index}`}
+                      key={index}
                       className="flex h-[320px] shrink-0 items-center justify-center bg-black sm:h-[420px] lg:h-[500px]"
                       style={{ width: `${100 / galleryPhotos.length}%` }}
                     >
@@ -350,12 +349,9 @@ export default function BlackRailBarSite() {
                     <button
                       type="button"
                       onClick={() =>
-                        setCurrentSlide((prev) =>
-                          prev === 0 ? galleryPhotos.length - 1 : prev - 1
-                        )
+                        setCurrentSlide(currentSlide === 0 ? galleryPhotos.length - 1 : currentSlide - 1)
                       }
-                      className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white transition hover:bg-black/75 sm:left-4"
-                      aria-label="Попереднє фото"
+                      className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white"
                     >
                       ←
                     </button>
@@ -363,12 +359,9 @@ export default function BlackRailBarSite() {
                     <button
                       type="button"
                       onClick={() =>
-                        setCurrentSlide((prev) =>
-                          prev === galleryPhotos.length - 1 ? 0 : prev + 1
-                        )
+                        setCurrentSlide(currentSlide === galleryPhotos.length - 1 ? 0 : currentSlide + 1)
                       }
-                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white transition hover:bg-black/75 sm:right-4"
-                      aria-label="Наступне фото"
+                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white"
                     >
                       →
                     </button>
@@ -392,12 +385,9 @@ export default function BlackRailBarSite() {
                           key={index}
                           type="button"
                           onClick={() => setCurrentSlide(index)}
-                          aria-label={`Перейти до фото ${index + 1}`}
-                          className={
-                            index === currentSlide
-                              ? "h-2.5 w-2.5 rounded-full bg-white ring-1 ring-white/20 transition"
-                              : "h-2.5 w-2.5 rounded-full bg-white/40 ring-1 ring-white/20 transition hover:bg-white/70"
-                          }
+                          className={index === currentSlide
+                            ? "h-2.5 w-2.5 rounded-full bg-white ring-1 ring-white/20"
+                            : "h-2.5 w-2.5 rounded-full bg-white/40 ring-1 ring-white/20"}
                         />
                       ))}
                     </div>
@@ -405,7 +395,7 @@ export default function BlackRailBarSite() {
                 </div>
               </div>
             </div>
-              </div>
+            </div>
             </section>
         </main>
 
