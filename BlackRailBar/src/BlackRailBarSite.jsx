@@ -1,7 +1,7 @@
-import {useMemo, useState } from "react";
+import { useState } from "react";
 export default function BlackRailBarSite() {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const galleryCountLabel = useMemo(() => `${galleryPhotos.length} фото`, [galleryPhotos]);
+    const galleryCountLabel = `${galleryPhotos.length} фото`;
     const galleryPhotos = [
       "/images/bar1.jpg",
       "/images/bar2.jpg",
