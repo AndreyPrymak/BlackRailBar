@@ -6,6 +6,7 @@ export default function BlackRailBarSite() {
       "/images/bar2.jpg",
       "/images/bar3.jpg",
       "/images/bar4.jpg"
+
       ];
   const menuCocktails = [
     {
@@ -37,7 +38,7 @@ export default function BlackRailBarSite() {
       desc: "Неперевершені ребра мариновані в соєво-медовому соусі з додаванням міцної гірчички.",
     },
     {
-      name: "Шашлик всюму голова",
+      name: "Шашлик всьому голова",
       price: "320 грн",
       desc: "Шашлик зі свинини на вогні, що може бути краще.",
     },
@@ -307,84 +308,80 @@ export default function BlackRailBarSite() {
             </div>
 
             <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-amber-400/10 via-white/[0.04] to-white/[0.02] p-6 gold-glow sm:p-8">
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-xs uppercase tracking-[0.3em] text-amber-300">Галерея</div>
-                  <h3 className="mt-2 text-2xl font-semibold">Атмосфера Black Rail</h3>
-                </div>
-                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
-                  4 фото
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black">
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {galleryPhotos.map((photo, index) => (
-                    <div
-                      key={index}
-                      className="flex h-[420px] w-full shrink-0 items-center justify-center bg-black sm:h-[500px]"
-                    >
-                      <img
-                        src={photo}
-                        alt={`Фото ${index + 1}`}
-                        className="h-full w-full object-contain"
-                      />
+                        <div
+                          key={`${photo}-${index}`}
+                          className="flex h-[320px] shrink-0 items-center justify-center bg-black sm:h-[420px] lg:h-[500px]"
+                          style={{ width: `${100 / galleryPhotos.length}%` }}
+                        >
+                          <img
+                            src={photo}
+                            alt={`Фото ${index + 1}`}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentSlide((prev) =>
-                      prev === 0 ? galleryPhotos.length - 1 : prev - 1
-                    )
-                  }
-                  className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/55 px-3 py-2 text-white transition hover:bg-black/75"
-                >
-                  ←
-                </button>
+                    {galleryPhotos.length > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setCurrentSlide((prev) =>
+                              prev === 0 ? galleryPhotos.length - 1 : prev - 1
+                            )
+                          }
+                          className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white transition hover:bg-black/75 sm:left-4"
+                          aria-label="Попереднє фото"
+                        >
+                          ←
+                        </button>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentSlide((prev) =>
-                      prev === galleryPhotos.length - 1 ? 0 : prev + 1
-                    )
-                  }
-                  className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/55 px-3 py-2 text-white transition hover:bg-black/75"
-                >
-                  →
-                </button>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setCurrentSlide((prev) =>
+                              prev === galleryPhotos.length - 1 ? 0 : prev + 1
+                            )
+                          }
+                          className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-white transition hover:bg-black/75 sm:right-4"
+                          aria-label="Наступне фото"
+                        >
+                          →
+                        </button>
+                      </>
+                    )}
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
 
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-6">
-                  <div>
-                    <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.25em] text-amber-200/90">
-                      Lounge • Cocktails • Mood
+                    <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-4 p-4 sm:p-6">
+                      <div>
+                        <div className="text-sm font-medium text-white">Вечірня атмосфера</div>
+                        <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-amber-200/90 sm:text-xs">
+                          Lounge • Cocktails • Mood
+                        </div>
+                      </div>
+
+                      {galleryPhotos.length > 1 && (
+                        <div className="flex gap-2">
+                          {galleryPhotos.map((_, index) => (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => setCurrentSlide(index)}
+                              aria-label={`Перейти до фото ${index + 1}`}
+                              className={`h-2.5 w-2.5 rounded-full ring-1 ring-white/20 transition ${
+                                index === currentSlide ? "bg-white" : "bg-white/40 hover:bg-white/70"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    {galleryPhotos.map((_, index) => (
-                      <span
-                        key={index}
-                        className={`h-2.5 w-2.5 rounded-full ring-1 ring-white/20 ${
-                          index === currentSlide ? "bg-white" : "bg-white/40"
-                        }`}
-                      />
-                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
         </main>
 
         <footer className="border-t border-white/10 bg-black/40">
